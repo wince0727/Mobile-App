@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Request</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(ava.jpg);
+            background-size: cover;
+            padding: 20px; /* Changed padding to 20px for better responsiveness */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+            height: 100vh;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px; /* Increased max width for better alignment */
+        }
+
+        .form {
+            background:  #4481eb; /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            display: flex; /* Use flexbox for vertical alignment */
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center align elements */
+        }
+
+        .form h2 {
+            margin-top: 0;
+            color: #000000;
+            text-align: center; /* Center the heading */
+        }
+
+        .form input,
+        .form textarea,
+        .form button {
+            width: 80%; /* Full width for inputs */
+            padding: 10px;
+            margin: 10px 0; /* Adjust margin for consistency */
+            border: 3px solid #0d0b0b;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in element's total width */
+        }
+
+        .form button {
+            background: black;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            opacity: 0.9;
+        }
+
+        .form a {
+            color: #6e27e0;
+            text-decoration: none;
+        }
+
+        .form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .form input,
+            .form textarea,
+            .form button {
+                width: 100%; /* Adjust input widths for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form submit-request">
+            <h2>Submit Request</h2>
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="text" placeholder="Mobile Number" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

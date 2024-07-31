@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(ava.jpg);
+            background-size: cover; /* Ensures the background covers the entire screen */
+            padding: 20px; /* Reduced padding for better responsiveness */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+            height: 100vh;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px; /* Increased max width for better alignment */
+        }
+
+        .form {
+            background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            position: relative;
+        }
+
+        .form h2 {
+            margin-top: 0;
+            color: black;
+            text-align: center; /* Center the heading */
+        }
+
+        .form input,
+        .form select,
+        .form textarea,
+        .form button {
+            width: 100%; /* Full width for inputs */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in element's total width */
+        }
+
+        .form input[type="checkbox"],
+        .form input[type="radio"] {
+            width: auto;
+        }
+
+        .form button {
+            background: black;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            opacity: 0.9;
+        }
+
+        .range, .sort, .checkboxes {
+            margin-bottom: 15px;
+        }
+
+        .range output {
+            position: absolute;
+            top: -25px;
+            background: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            pointer-events: none;
+            text-align: center;
+            min-width: 40px;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .form {
+                padding: 15px;
+            }
+            .form input,
+            .form select,
+            .form textarea,
+            .form button {
+                padding: 8px;
+            }
+            .form button {
+                font-size: 14px;
+            }
+            .range output {
+                top: -30px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="form filter">
+            <h2>Filter</h2>
+            <div class="range">
+                <label for="pricing">Pricing</label>
+                <input type="range" id="pricing" min="0" max="1000" value="500">
+                <output id="pricingOutput" for="pricing">500</output>
+            </div>
+            <div class="sort">
+                <label for="sort">Sort by</label>
+                <select id="sort">
+                    <option value="top-bottom">Top - Bottom</option>
+                    <option value="bottom-top">Bottom - Top</option>
+                </select>
+            </div>
+            <div class="checkboxes">
+                <label>Category</label>
+                <div>
+                    <input type="checkbox" id="sports-wear">
+                    <label for="sports-wear">Sports Wear</label>
+                </div>
+                <!-- Add more checkboxes as needed -->
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        const rangeInput = document.getElementById('pricing');
+        const rangeOutput = document.getElementById('pricingOutput');
+
+        rangeInput.addEventListener('input', function() {
+            rangeOutput.value = rangeInput.value;
+            const rangeWidth = rangeInput.offsetWidth;
+            const newPosition = ((rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min)) * rangeWidth;
+            rangeOutput.style.left = `calc(${newPosition}px - 20px)`;
+        });
+
+        window.addEventListener('resize', function() {
+            const rangeWidth = rangeInput.offsetWidth;
+            const newPosition = ((rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min)) * rangeWidth;
+            rangeOutput.style.left = `calc(${newPosition}px - 20px)`;
+        });
+
+        // Initialize position
+        const initialRangeWidth = rangeInput.offsetWidth;
+        const initialPosition = ((rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min)) * initialRangeWidth;
+        rangeOutput.style.left = `calc(${initialPosition}px - 20px)`;
+    </script>
+</body>
+</html>
